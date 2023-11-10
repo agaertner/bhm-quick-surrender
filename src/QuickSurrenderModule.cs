@@ -191,7 +191,7 @@ namespace Nekres.Quick_Surrender_Module {
                                                            .SetHorizontalAlignment(HorizontalAlignment.Right)
                                                            .SetVerticalAlignment(VerticalAlignment.Top)
                                                            .CreatePart($"{Math.Round(COOLDOWN_MS / 1000f)}", o => {
-                                                                o.SetFontSize(ContentService.FontSize.Size14);
+                                                                o.SetFontSize(ContentService.FontSize.Size16);
                                                                 o.SetSuffixImageSize(new Point(18, 18));
                                                                 o.SetSuffixImage(GameService.Content.DatAssetCache.GetTextureFromAssetId(156651));
                                                             }).Build();
