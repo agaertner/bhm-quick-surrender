@@ -173,8 +173,7 @@ namespace Nekres.Quick_Surrender_Module {
         }
 
 
-        private void BuildSurrenderButton()
-        {
+        private void BuildSurrenderButton() {
             _surrenderButton?.Dispose();
 
             if (!_surrenderButtonEnabled.Value || GameService.Gw2Mumble.CurrentMap.Type != MapType.Instance) {
@@ -217,7 +216,6 @@ namespace Nekres.Quick_Surrender_Module {
                                                         o.SetFontSize(ContentService.FontSize.Size16);
                                                         o.SetPrefixImage(GameService.Content.DatAssetCache.GetTextureFromAssetId(102540));
                                                     }).Wrap().Build();
-
             label.Parent = surrenderButtonTooltip;
 
             _surrenderButton = new Image {
