@@ -172,7 +172,6 @@ namespace Nekres.Quick_Surrender_Module {
             }
         }
 
-
         private void BuildSurrenderButton() {
             _surrenderButton?.Dispose();
 
@@ -240,6 +239,7 @@ namespace Nekres.Quick_Surrender_Module {
             };
 
             _surrenderButton.Click += async (o,  e) => {
+                // Paste as ability name (aka. ping) when modifiers are held when clicking.
                 if (KeyboardUtil.IsCtrlPressed()) {
                     await ChatUtil.Send($"[/{_surrenderPing.Value}]", _chatMessageKeySetting.Value, Logger);
                 } else if (KeyboardUtil.IsShiftPressed()) {
