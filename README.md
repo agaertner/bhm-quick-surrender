@@ -1,4 +1,2 @@
-# bhm-module-template
-A template repository for Blish-HUD modules.
-
-See the [wiki](https://github.com/agaertner/bhm-module-template/wiki) for more information.
+# bhm-quick-surrender
+A module for Blish-HUD which provides a simple shortcut ability to forfeit.
