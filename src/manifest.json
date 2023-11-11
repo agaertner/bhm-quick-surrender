@@ -1,6 +1,6 @@
 {
   "name": "Quick Surrender",
-  "version": "0.2.5",
+  "version": "0.2.7",
   "namespace": "Nekres.Quick_Surrender_Module",
   "package": "QuickSurrenderModule.dll",
   "manifest_version": 1,

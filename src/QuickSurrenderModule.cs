@@ -6,6 +6,7 @@ using Blish_HUD.Modules;
 using Blish_HUD.Modules.Managers;
 using Blish_HUD.Settings;
 using Gw2Sharp.Models;
+using Gw2Sharp.WebApi;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
@@ -46,7 +47,7 @@ namespace Nekres.Quick_Surrender_Module {
         private SettingEntry<KeyBinding> _chatMessageKeySetting;
 
         private const string SURRENDER_TEXT = "/gg";
-        private const int COOLDOWN_MS = 1500;
+        private const int COOLDOWN_MS = 5000; // Cooldown of the invulnerable buff (Resurrection) after which defeat can be conceded again.
 
         private DateTime _lastSurrenderTime;
 
@@ -158,11 +159,10 @@ namespace Nekres.Quick_Surrender_Module {
             _surrenderBinding.Value.Enabled = true;
         }
 
-        private async void OnSurrenderBindingActivated(object o, EventArgs e) => await DoSurrender();
-
-        private void OnIsMapOpenChanged(object o, ValueEventArgs<bool> e) => ToggleSurrenderButton(!e.Value, 0.45f);
-        private void OnIsInGameChanged(object o, ValueEventArgs<bool> e) => ToggleSurrenderButton(e.Value, 0.1f);
-        private void OnSurrenderButtonEnabledSettingChanged(object o, ValueChangedEventArgs<bool> e) => ToggleSurrenderButton(e.NewValue, 0.1f);
+        private async void OnSurrenderBindingActivated(object            o, EventArgs                   e) => await DoSurrender();
+        private       void OnIsMapOpenChanged(object                     o, ValueEventArgs<bool>        e) => ToggleSurrenderButton(!e.Value,   0.45f);
+        private       void OnIsInGameChanged(object                      o, ValueEventArgs<bool>        e) => ToggleSurrenderButton(e.Value,    0.1f);
+        private       void OnSurrenderButtonEnabledSettingChanged(object o, ValueChangedEventArgs<bool> e) => ToggleSurrenderButton(e.NewValue, 0.1f);
 
         private void ToggleSurrenderButton(bool enabled, float tDuration) {
             if (enabled) {
@@ -179,7 +179,7 @@ namespace Nekres.Quick_Surrender_Module {
                 return;
             }
 
-            var tooltipSize = new Point(300, 100);
+            var tooltipSize = new Point(300, GameService.Overlay.UserLocale.Value == Locale.French ? 120 : 100); // dirty clipping fix.
             var surrenderButtonTooltip = new Tooltip {
                 Size = tooltipSize
             };
@@ -217,7 +217,7 @@ namespace Nekres.Quick_Surrender_Module {
                                                         o.SetPrefixImage(GameService.Content.DatAssetCache.GetTextureFromAssetId(102540));
                                                     }).Wrap().Build();
             label.Parent = surrenderButtonTooltip;
-
+            
             _surrenderButton = new Image {
                 Parent  = GameService.Graphics.SpriteScreen,
                 Size    = new Point(45, 45),
@@ -239,14 +239,14 @@ namespace Nekres.Quick_Surrender_Module {
                 _surrenderButton.Texture = _surrenderFlag;
             };
 
-            _surrenderButton.Click += async (o,  e) => {
+            _surrenderButton.Click += async (_,_) => {
                 // Paste as ability name (aka. ping) when modifiers are held when clicking.
                 if (KeyboardUtil.IsCtrlPressed()) {
                     await ChatUtil.Send($"[/{_surrenderPing.Value}]", _chatMessageKeySetting.Value, Logger);
                 } else if (KeyboardUtil.IsShiftPressed()) {
                     await ChatUtil.Insert($"[/{_surrenderPing.Value}]", _chatMessageKeySetting.Value, Logger);
                 } else {
-                    OnSurrenderBindingActivated(o, e);
+                    await DoSurrender();
                 }
             };
 
@@ -266,6 +266,5 @@ namespace Nekres.Quick_Surrender_Module {
         private void OnSpriteScreenResized(object sender, ResizedEventArgs e) {
             ValidatePosition();
         }
-
     }
 }
