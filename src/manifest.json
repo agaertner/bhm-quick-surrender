@@ -1,15 +1,14 @@
 {
-  "name": "TemplateModule",
-  "version": "0.0.1",
-  "namespace": "Nekres.TemplateModule",
-  "package": "TemplateModule.dll",
+  "name": "Quick Surrender",
+  "version": "0.2.5",
+  "namespace": "Nekres.Quick_Surrender_Module",
+  "package": "QuickSurrenderModule.dll",
   "manifest_version": 1,
-  "description": "A template module for Blish-HUD.",
+  "description": "Shortcut to concede defeat and abandon all hope for when you are so done with everything.\n\nCan only be used in raids, strikes, fractals, Super Adventure Box and occasionally in special seasonal activities.",
   "dependencies": {
     "bh.blishhud": ">=1.0.0"
   },
-  "enabled_without_gw2": false,
-  "url": "https://github.com/agaertner/bhm-module-template",
+  "url": "https://github.com/agaertner/bhm-quick-surrender",
   "contributors": [
     {
       "name": "Nekres",
