@@ -1,18 +1,18 @@
 {
-    "name": "Quick Surrender",
-    "version": "0.1.8",
-    "namespace": "Nekres.Quick_Surrender_Module",
-    "package": "QuickSurrenderModule.dll",
-    "manifest_version": 1,
-    "description": "Shortcut to concede defeat and abandon all hope for when you are so done with everything.\n\nCan only be used in raids, strikes, fractals, Super Adventure Box and occasionally in special seasonal activities.",
-    "dependencies": {
-        "bh.blishhud": ">=1.0.0"
-    },
-    "url": "https://github.com/agaertner/bhm-quick-surrender",
-    "contributors": [
-        {
-            "name": "Nekres",
-            "username": "Nekres.1943"
-        }
-    ]
+  "name": "Quick Surrender",
+  "version": "0.2.5",
+  "namespace": "Nekres.Quick_Surrender_Module",
+  "package": "QuickSurrenderModule.dll",
+  "manifest_version": 1,
+  "description": "Shortcut to concede defeat and abandon all hope for when you are so done with everything.\n\nCan only be used in raids, strikes, fractals, Super Adventure Box and occasionally in special seasonal activities.",
+  "dependencies": {
+    "bh.blishhud": ">=1.0.0"
+  },
+  "url": "https://github.com/agaertner/bhm-quick-surrender",
+  "contributors": [
+    {
+      "name": "Nekres",
+      "username": "Nekres.1943"
+    }
+  ]
 }
