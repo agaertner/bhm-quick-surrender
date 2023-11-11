@@ -184,6 +184,7 @@ namespace Nekres.Quick_Surrender_Module {
                 Size = tooltipSize
             };
 
+            // Create the ability tooltip
             var cooldownLabel = new FormattedLabelBuilder().SetWidth(tooltipSize.X)
                                                            .SetHeight(tooltipSize.Y)
                                                            .SetHorizontalAlignment(HorizontalAlignment.Right)
